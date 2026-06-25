@@ -1,0 +1,29 @@
+# Environments
+.env
+.env.*
+!.env.example
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# MacOS
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Build and Dependencies (Catch-all for monorepo roots)
+node_modules/
+dist/
+build/
+target/
+*.jar
+*.war
+
+# Uploads / Local Data
+uploads/
+/backend/**/uploads/

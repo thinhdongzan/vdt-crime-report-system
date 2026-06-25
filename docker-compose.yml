@@ -1,0 +1,148 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: crime-report-mariadb
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-root}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./init-sql:/docker-entrypoint-initdb.d
+    networks:
+      - crime-report-network
+
+  api-gateway:
+    build:
+      context: ./backend/api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - crime-report-network
+    depends_on:
+      - auth-service
+      - report-service
+      - evidence-service
+      - dispatch-service
+      - dashboard-service
+      - admin-service
+
+  auth-service:
+    build:
+      context: ./backend/auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/auth_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  report-service:
+    build:
+      context: ./backend/report-service
+      dockerfile: Dockerfile
+    container_name: report-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/report_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  evidence-service:
+    build:
+      context: ./backend/evidence-service
+      dockerfile: Dockerfile
+    container_name: evidence-service
+    ports:
+      - "8083:8083"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/evidence_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    volumes:
+      - evidence_uploads:/uploads/evidences
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  dispatch-service:
+    build:
+      context: ./backend/dispatch-service
+      dockerfile: Dockerfile
+    container_name: dispatch-service
+    ports:
+      - "8084:8084"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/dispatch_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  dashboard-service:
+    build:
+      context: ./backend/dashboard-service
+      dockerfile: Dockerfile
+    container_name: dashboard-service
+    ports:
+      - "8085:8085"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/dashboard_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  admin-service:
+    build:
+      context: ./backend/admin-service
+      dockerfile: Dockerfile
+    container_name: admin-service
+    ports:
+      - "8086:8086"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://mariadb:3306/admin_db?createDatabaseIfNotExist=true
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
+  crime-report-web:
+    build:
+      context: ./frontend/crime-report-web
+      dockerfile: Dockerfile
+    container_name: crime-report-web
+    ports:
+      - "5173:5173"
+    networks:
+      - crime-report-network
+
+networks:
+  crime-report-network:
+    driver: bridge
+
+volumes:
+  mariadb_data:
+  evidence_uploads:

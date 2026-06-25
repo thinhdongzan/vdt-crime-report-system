@@ -1,0 +1,49 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - PATCH
+              - OPTIONS
+            allowedHeaders: "*"
+      routes:
+        - id: auth-service
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**
+        - id: report-service
+          uri: http://report-service:8082
+          predicates:
+            - Path=/api/reports/**
+        - id: evidence-service
+          uri: http://evidence-service:8083
+          predicates:
+            - Path=/api/evidences/**
+        - id: dispatch-service
+          uri: http://dispatch-service:8084
+          predicates:
+            - Path=/api/dispatch/**
+        - id: dashboard-service
+          uri: http://dashboard-service:8085
+          predicates:
+            - Path=/api/dashboard/**
+        - id: admin-service
+          uri: http://admin-service:8086
+          predicates:
+            - Path=/api/admin/**
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
