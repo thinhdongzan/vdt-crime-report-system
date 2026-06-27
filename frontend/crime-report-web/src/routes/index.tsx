@@ -6,11 +6,14 @@ import CitizenSubmitReportPage from '../pages/CitizenSubmitReportPage';
 import CitizenTrackReportPage from '../pages/CitizenTrackReportPage';
 import CommanderDashboardPage from '../pages/CommanderDashboardPage';
 
+import LandingPage from '../pages/LandingPage';
+
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout />,
         children: [
+            { index: true, element: <LandingPage /> },
             { path: "login", element: <LoginPage /> },
             { path: "register", element: <RegisterPage /> },
             { path: "reports/submit", element: <CitizenSubmitReportPage /> },

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cổng Thông Tin Tố Giác Tội Phạm - Bộ Công An</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#FFFFFF",
+                        "tertiary-fixed": "#ffdad4",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#ff907f",
+                        "on-background": "#121d26",
+                        "surface-tint": "#b52619",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "surface-bright": "#f7f9ff",
+                        "on-tertiary-fixed-variant": "#862116",
+                        "surface-container": "#e4effd",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "primary-container": "#8b0000",
+                        "inverse-surface": "#27313c",
+                        "primary": "#610000",
+                        "surface-container-low": "#edf4ff",
+                        "on-secondary-container": "#735a00",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "tertiary": "#600201",
+                        "surface-variant": "#d9e3f1",
+                        "on-surface": "#121d26",
+                        "tertiary-container": "#801c12",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb4a8",
+                        "page-bg": "#F7F5F0",
+                        "secondary-fixed-dim": "#ecc246",
+                        "inverse-primary": "#ffb4a8",
+                        "on-secondary-fixed-variant": "#584400",
+                        "surface-container-high": "#dfe9f7",
+                        "secondary-fixed": "#ffe08e",
+                        "on-secondary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary": "#755b00",
+                        "border-subtle": "#E5E0D8",
+                        "inverse-on-surface": "#e8f2ff",
+                        "on-tertiary-fixed": "#410000",
+                        "background": "#f7f9ff",
+                        "on-secondary-fixed": "#241a00",
+                        "on-tertiary-container": "#ff907f",
+                        "on-primary-fixed-variant": "#920703",
+                        "on-primary-fixed": "#410000",
+                        "secondary-container": "#fed255",
+                        "on-surface-variant": "#5a403c",
+                        "surface-dim": "#d1dbe8",
+                        "text-muted": "#6B7280",
+                        "primary-fixed": "#ffdad4",
+                        "surface-container-highest": "#d9e3f1",
+                        "outline": "#8e706b",
+                        "outline-variant": "#e3beb8",
+                        "red-tint": "#F8EAEA"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px",
+                        "margin-tablet": "32px",
+                        "unit": "8px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "title-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                        "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #F7F5F0;
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3Base%3Cpath d='M200 0 A 200 200 0 1 1 200 400 A 200 200 0 1 1 200 0 M 200 40 A 160 160 0 1 0 200 360 A 160 160 0 1 0 200 40' fill='%238B0000' fill-opacity='0.04'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: center 20%;
+            font-family: 'Inter', sans-serif;
+        }
+        .dong-son-watermark {
+            opacity: 0.06;
+            pointer-events: none;
+        }
+        .hover-lift {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(31, 41, 51, 0.05);
+        }
+    </style>
+</head>
+<body class="text-on-background">
+<!-- TopNavBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container docked full-width top-0 z-50 sticky border-none">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1; font-size: 32px;">shield</span>
+<span class="text-title-lg font-headline-md text-on-primary dark:text-on-primary-container hidden lg:block">Cổng Thông Tin Tố Giác Tội Phạm</span>
+</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-on-primary font-bold border-b-2 border-on-primary pb-1 font-label-md text-label-md" href="#">Trang chủ</a>
+<a class="text-on-primary/80 font-body-md text-label-md hover:text-on-primary hover:opacity-100 transition-opacity" href="#">Gửi tin báo</a>
+<a class="text-on-primary/80 font-body-md text-label-md hover:text-on-primary hover:opacity-100 transition-opacity" href="#">Theo dõi tin báo</a>
+<button class="bg-surface text-primary px-6 py-2 rounded-lg font-title-md text-title-md Active:scale-95 transition-transform duration-150">Đăng nhập</button>
+</div>
+<button class="md:hidden material-symbols-outlined">menu</button>
+</nav>
+</header>
+<main class="max-w-container-max mx-auto">
+<!-- Hero Section -->
+<section class="py-16 md:py-32 px-margin-mobile md:px-margin-desktop grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<div class="space-y-8">
+<h1 class="text-display-lg font-display-lg text-primary tracking-tight leading-tight">
+                    Hệ thống Tiếp nhận và Điều phối Thông tin tố giác tội phạm
+                </h1>
+<p class="text-body-lg font-body-lg text-on-surface-variant max-w-xl">
+                    Nền tảng hỗ trợ người dân gửi tin báo an toàn, bảo mật danh tính và giúp cơ quan chức năng tiếp nhận, phân loại, điều phối xử lý kịp thời.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-title-lg text-title-lg hover:bg-[#5C0000] transition-colors shadow-sm">
+                        Gửi tin báo
+                    </button>
+<button class="bg-surface border-2 border-primary text-primary px-8 py-4 rounded-lg font-title-lg text-title-lg hover:bg-red-tint transition-colors">
+                        Theo dõi trạng thái
+                    </button>
+</div>
+<div class="pt-2">
+<a class="text-primary font-title-md text-title-md underline underline-offset-4 hover:opacity-80 transition-opacity" href="#">
+                        Đăng nhập hệ thống quản lý
+                    </a>
+</div>
+</div>
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-primary to-primary-container rounded-2xl blur opacity-10 group-hover:opacity-20 transition duration-1000"></div>
+<img alt="Tờ phiếu tin báo với con dấu trống đồng truyền thống Việt Nam và thông tin bảo mật" class="relative rounded-2xl border border-border-subtle shadow-xl w-full object-cover aspect-[4/3]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRCGVH0v3L9pNYKggA9scD5CGy3XvTGzylwGlFaZucI6KGwyizzR9B2enLEd_PfjBT9qA2XDxpI5cHcfYfwOzK2TtPsIsjZ-C4qK82U-DwEmGU62YQNwAAN8InTBYgyZOAIpfh0m1WHI1Yy9cCTxNLPJnWSg7f8VIGSRcwU-dOZIuBFa6Bz-XEd6Ym4F5fbLTk3UafD5lvlskQDw_roFkcASf83fo1obAbEGPuk2XMeNwSb3dBPajFpWCDIa78ttaiEFmY-tcoEqV7"/>
+</div>
+</section>
+<!-- Quick Action Grid -->
+<section class="py-20 px-margin-mobile md:px-margin-desktop bg-surface-container-lowest/50">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="bg-surface p-8 border border-border-subtle rounded-xl hover-lift">
+<div class="w-12 h-12 bg-red-tint text-primary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">description</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-3">Gửi tin báo</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Cung cấp thông tin vụ việc, vị trí xảy ra và bằng chứng liên quan một cách ẩn danh và an toàn.</p>
+</div>
+<div class="bg-surface p-8 border border-border-subtle rounded-xl hover-lift">
+<div class="w-12 h-12 bg-red-tint text-primary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">search</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-3">Theo dõi trạng thái</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Tra cứu tiến độ xử lý và phản hồi từ cơ quan chức năng bằng mã tin báo đã được cung cấp.</p>
+</div>
+<div class="bg-surface p-8 border border-border-subtle rounded-xl hover-lift">
+<div class="w-12 h-12 bg-red-tint text-primary rounded-lg flex items-center justify-center mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">lock</span>
+</div>
+<h3 class="text-headline-md font-headline-md text-primary mb-3">Đăng nhập hệ thống</h3>
+<p class="text-body-md font-body-md text-on-surface-variant">Khu vực dành riêng cho cán bộ trực ban, điều tra viên, chỉ huy và quản trị viên hệ thống.</p>
+</div>
+</div>
+</section>
+<!-- Process Flow -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop">
+<div class="text-center mb-16">
+<h2 class="text-headline-lg font-headline-lg text-primary mb-4">Quy trình xử lý tin báo</h2>
+<div class="w-24 h-1 bg-primary mx-auto"></div>
+</div>
+<div class="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+<!-- Line background for desktop -->
+<div class="hidden md:block absolute top-12 left-0 w-full h-0.5 bg-border-subtle -z-10"></div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-20 h-20 rounded-full bg-primary text-on-primary flex items-center justify-center text-title-lg font-headline-md shadow-lg">1</div>
+<h4 class="text-title-md font-headline-md">Người dân gửi tin báo</h4>
+<p class="text-body-sm text-on-surface-variant">Hệ thống tiếp nhận thông tin 24/7 một cách bảo mật.</p>
+</div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-20 h-20 rounded-full bg-primary text-on-primary flex items-center justify-center text-title-lg font-headline-md shadow-lg">2</div>
+<h4 class="text-title-md font-headline-md">Mã hóa và tính điểm</h4>
+<p class="text-body-sm text-on-surface-variant">Tự động phân loại mức độ nguy cấp và mã hóa thông tin.</p>
+</div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-20 h-20 rounded-full bg-primary text-on-primary flex items-center justify-center text-title-lg font-headline-md shadow-lg">3</div>
+<h4 class="text-title-md font-headline-md">Điều phối địa bàn</h4>
+<p class="text-body-sm text-on-surface-variant">Chuyển tin báo tới đúng đơn vị có thẩm quyền giải quyết.</p>
+</div>
+<div class="flex flex-col items-center text-center space-y-4">
+<div class="w-20 h-20 rounded-full bg-primary text-on-primary flex items-center justify-center text-title-lg font-headline-md shadow-lg">4</div>
+<h4 class="text-title-md font-headline-md">Cập nhật trạng thái</h4>
+<p class="text-body-sm text-on-surface-variant">Cán bộ xử lý và phản hồi tiến độ tới người gửi tin.</p>
+</div>
+</div>
+</section>
+<!-- Trust Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop bg-primary text-on-primary relative overflow-hidden rounded-3xl mx-margin-mobile md:mx-margin-desktop mb-24">
+<div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-display-lg font-display-lg mb-8">Cam kết an toàn &amp; bảo mật thông tin</h2>
+<p class="text-body-lg mb-12 opacity-90">Hệ thống được vận hành bởi Bộ Công An, áp dụng các tiêu chuẩn an ninh mạng cao nhất để bảo vệ quyền lợi của công dân.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container">verified_user</span>
+<span class="font-title-md">Bảo mật danh tính người tố giác</span>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container">qr_code</span>
+<span class="font-title-md">Theo dõi bằng mã tin báo</span>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container">admin_panel_settings</span>
+<span class="font-title-md">Phân quyền truy cập theo vai trò</span>
+</div>
+<div class="flex items-start gap-4">
+<span class="material-symbols-outlined text-on-primary-container">history</span>
+<span class="font-title-md">Ghi nhận lịch sử xử lý hồ sơ</span>
+</div>
+</div>
+</div>
+<div class="hidden lg:flex justify-center">
+<span class="material-symbols-outlined" style="font-size: 240px; opacity: 0.2;">security</span>
+</div>
+</div>
+<!-- Decorative circle -->
+<div class="absolute -bottom-24 -right-24 w-96 h-96 bg-primary-container rounded-full opacity-30"></div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-low full-width border-t border-border-subtle">
+<div class="flex flex-col md:flex-row justify-between items-center w-full px-margin-desktop py-12 max-w-container-max mx-auto gap-8">
+<div class="space-y-4 text-center md:text-left">
+<div class="flex items-center justify-center md:justify-start gap-3">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1">shield</span>
+<span class="text-title-md font-headline-md text-primary dark:text-primary-fixed-dim uppercase tracking-wider">Bộ Công An Việt Nam</span>
+</div>
+<p class="text-body-sm font-body-sm text-on-surface-variant max-w-md">
+                    Hệ thống Tiếp nhận và Điều phối Thông tin tố giác tội phạm. Thông tin trên hệ thống được xử lý theo phân quyền và quy trình nghiệp vụ quốc gia.
+                </p>
+<p class="text-body-sm font-body-sm text-text-muted">© 2024 Cổng Thông Tin Tố Giác Tội Phạm - Bộ Công An. Tất cả quyền được bảo lưu.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="text-label-md font-label-md text-text-muted hover:text-primary transition-colors" href="#">Chính sách bảo mật</a>
+<a class="text-label-md font-label-md text-text-muted hover:text-primary transition-colors" href="#">Điều khoản sử dụng</a>
+<a class="text-label-md font-label-md text-text-muted hover:text-primary transition-colors" href="#">Liên hệ công tác</a>
+<a class="text-label-md font-label-md text-text-muted hover:text-primary transition-colors" href="#">Hướng dẫn kỹ thuật</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('mousedown', () => {
+                button.classList.add('scale-95');
+            });
+            button.addEventListener('mouseup', () => {
+                button.classList.remove('scale-95');
+            });
+            button.addEventListener('mouseleave', () =></script></body></html>
