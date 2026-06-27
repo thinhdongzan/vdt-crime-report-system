@@ -14,6 +14,21 @@ services:
     networks:
       - crime-report-network
 
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: crime-report-phpmyadmin
+    ports:
+      - "8090:80"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+      - PMA_USER=${DB_USERNAME:-root}
+      - PMA_PASSWORD=${DB_PASSWORD:-root}
+    networks:
+      - crime-report-network
+    depends_on:
+      - mariadb
+
   api-gateway:
     build:
       context: ./backend/api-gateway

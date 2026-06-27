@@ -12,11 +12,16 @@ spring:
     hibernate:
       ddl-auto: validate
     show-sql: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
 management:
   endpoints:
     web:
       exposure:
         include: health
-  flyway:
-    enabled: true
-    baseline-on-migrate: true
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
