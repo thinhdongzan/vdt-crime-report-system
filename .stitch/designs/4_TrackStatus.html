@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+
+<html lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Theo dõi tin báo - Hệ thống Tiếp nhận &amp; Điều phối Thống tin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "tertiary": "#600201",
+                    "on-background": "#121d26",
+                    "surface-dim": "#d1dbe8",
+                    "surface": "#FFFFFF",
+                    "surface-variant": "#d9e3f1",
+                    "surface-tint": "#b52619",
+                    "tertiary-container": "#801c12",
+                    "on-tertiary": "#ffffff",
+                    "text-muted": "#6B7280",
+                    "red-tint": "#F8EAEA",
+                    "primary-container": "#8b0000",
+                    "border-subtle": "#E5E0D8",
+                    "on-secondary-fixed-variant": "#584400",
+                    "outline": "#8e706b",
+                    "on-primary-container": "#ff907f",
+                    "background": "#f7f9ff",
+                    "on-secondary": "#ffffff",
+                    "surface-bright": "#f7f9ff",
+                    "on-tertiary-container": "#ff907f",
+                    "on-surface": "#121d26",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#e4effd",
+                    "inverse-on-surface": "#e8f2ff",
+                    "secondary-fixed-dim": "#ecc246",
+                    "page-bg": "#F7F5F0",
+                    "inverse-surface": "#27313c",
+                    "on-tertiary-fixed-variant": "#862116",
+                    "on-primary-fixed": "#410000",
+                    "surface-container-high": "#dfe9f7",
+                    "secondary": "#755b00",
+                    "on-secondary-container": "#735a00",
+                    "primary-fixed": "#ffdad4",
+                    "on-surface-variant": "#5a403c",
+                    "surface-container-low": "#edf4ff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#ffdad4",
+                    "outline-variant": "#e3beb8",
+                    "on-secondary-fixed": "#241a00",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#ffb4a8",
+                    "error-container": "#ffdad6",
+                    "secondary-container": "#fed255",
+                    "secondary-fixed": "#ffe08e",
+                    "primary": "#610000",
+                    "on-tertiary-fixed": "#410000",
+                    "surface-container-highest": "#d9e3f1",
+                    "on-primary-fixed-variant": "#920703",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-mobile": "16px",
+                    "margin-desktop": "64px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "margin-tablet": "32px",
+                    "gutter": "24px"
+            },
+            "fontFamily": {
+                "sans": ["Inter", "sans-serif"],
+                "body-lg": ["Inter"],
+                "label-md": ["Inter"],
+                "body-md": ["Inter"],
+                "headline-md": ["Inter"],
+                "headline-lg": ["Inter"],
+                "body-sm": ["Inter"],
+                "headline-lg-mobile": ["Inter"],
+                "title-lg": ["Inter"],
+                "title-md": ["Inter"],
+                "display-lg": ["Inter"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F5F0;
+        }
+
+        /* Dong Son Drum Pattern Watermark Overlay */
+        .dong-son-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg width='400' height='400' viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M200,0 A200,200 0 1,1 199.9,0 M200,40 A160,160 0 1,0 200.1,40 M200,80 A120,120 0 1,1 199.9,80 M200,120 A80,80 0 1,0 200.1,120' fill='none' stroke='%23610000' stroke-width='2'/%3E%3Ccircle cx='200' cy='200' r='10' fill='%23610000'/%3E%3Cg stroke='%23610000' stroke-width='1'%3E%3Cline x1='200' y1='0' x2='200' y2='400'/%3E%3Cline x1='0' y1='200' x2='400' y2='200'/%3E%3C/g%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .btn-primary {
+            background-color: #8B0000;
+            color: #ffffff;
+            transition: background-color 0.2s;
+        }
+        .btn-primary:hover {
+            background-color: #5C0000;
+        }
+
+        /* Custom scrollbar for data-heavy feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E5E0D8;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+<div class="dong-son-overlay"></div>
+<!-- Header & Navigation Shell -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container w-full top-0 sticky z-50 border-b border-on-primary/10 transition-colors duration-200">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-16">
+<div class="flex items-center gap-4">
+<div class="h-10 w-10 bg-white rounded-full flex items-center justify-center p-1">
+<span class="material-symbols-outlined text-primary text-[28px]" style="font-variation-settings: 'FILL' 1;">account_balance</span>
+</div>
+<h1 class="font-headline-md text-headline-md font-semibold text-on-primary dark:text-on-primary-container tracking-tight">
+                    Hệ thống Tiếp nhận &amp; Điều phối Thông tin
+                </h1>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-on-primary/80 font-medium font-title-md text-title-md hover:text-on-primary hover:bg-on-primary/5 px-2 py-1 transition-colors duration-200" href="#">Trang chủ</a>
+<a class="text-on-primary/80 font-medium font-title-md text-title-md hover:text-on-primary hover:bg-on-primary/5 px-2 py-1 transition-colors duration-200" href="#">Gửi tin báo</a>
+<a class="text-on-primary font-bold border-b-2 border-on-primary pb-1 font-title-md text-title-md transition-colors duration-200" href="#">Theo dõi tin báo</a>
+<a class="text-on-primary/80 font-medium font-title-md text-title-md hover:text-on-primary hover:bg-on-primary/5 px-2 py-1 transition-colors duration-200" href="#">Hướng dẫn</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-on-primary/80 hover:text-on-primary transition-colors">notifications</button>
+<div class="flex items-center gap-2 border-l border-on-primary/20 pl-4 ml-2">
+<span class="material-symbols-outlined text-on-primary">account_circle</span>
+<span class="font-title-md text-title-md font-medium">Đăng nhập</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-desktop py-12 md:py-16">
+<!-- Hero Section -->
+<div class="max-w-2xl mx-auto text-center mb-12">
+<h2 class="font-headline-lg text-headline-lg text-[#1F2933] mb-4">Theo dõi trạng thái tin báo</h2>
+<p class="font-body-lg text-body-lg text-text-muted">
+                Nhập mã theo dõi đã được cấp sau khi gửi tin báo để xem tiến độ xử lý. Hệ thống đảm bảo tính bảo mật và minh bạch cho mọi thông tin phản ánh.
+            </p>
+</div>
+<!-- Search Card Container -->
+<div class="max-w-3xl mx-auto mb-10">
+<div class="bg-surface border border-border-subtle p-8 rounded-lg">
+<div class="space-y-6">
+<div>
+<label class="block font-title-md text-title-md text-on-surface font-semibold mb-2" for="track_id">Mã theo dõi tin báo</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+<input class="w-full pl-12 pr-4 py-4 border border-border-subtle rounded-lg focus:ring-2 focus:ring-primary focus:border-primary font-body-md text-body-md" id="track_id" placeholder="Ví dụ: TB-2026-000128" type="text"/>
+</div>
+<p class="mt-2 font-body-sm text-body-sm text-text-muted italic">Mã theo dõi được hiển thị sau khi gửi tin báo thành công qua website hoặc email xác nhận.</p>
+</div>
+<div class="flex justify-center">
+<button class="btn-primary px-12 py-3 rounded-lg font-title-md text-title-md font-bold shadow-sm flex items-center gap-2">
+<span class="material-symbols-outlined">pageview</span>
+                            Tra cứu
+                        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- Result Section (Simulated State) -->
+<div class="max-w-3xl mx-auto opacity-0 translate-y-4 transition-all duration-700 ease-out" id="search-result">
+<div class="flex items-center gap-2 mb-4 border-b border-border-subtle pb-2">
+<span class="material-symbols-outlined text-primary">analytics</span>
+<h3 class="font-title-lg text-title-lg text-on-surface uppercase tracking-wider">Kết quả tra cứu</h3>
+</div>
+<div class="bg-surface border border-border-subtle rounded-lg overflow-hidden shadow-[0_4px_12px_rgba(31,41,51,0.05)]">
+<div class="grid grid-cols-1 md:grid-cols-2">
+<!-- Data Points -->
+<div class="p-8 space-y-6 border-r border-border-subtle">
+<div class="space-y-1">
+<span class="font-label-md text-label-md uppercase text-text-muted">Mã tin báo</span>
+<p class="font-headline-md text-headline-md text-primary font-bold">TB-2026-000128</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md uppercase text-text-muted">Tiêu đề</span>
+<p class="font-body-lg text-body-lg text-on-surface font-semibold">Tố giác hành vi cờ bạc trái phép</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md uppercase text-text-muted">Loại tin báo</span>
+<p class="font-body-md text-body-md text-on-surface">Trật tự xã hội</p>
+</div>
+<div class="space-y-1">
+<span class="font-label-md text-label-md uppercase text-text-muted">Thời gian gửi</span>
+<div class="flex items-center gap-2 text-on-surface font-body-md text-body-md">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                                20/06/2026 14:35
+                            </div>
+</div>
+</div>
+<!-- Status & Actions -->
+<div class="p-8 bg-surface-container-lowest flex flex-col justify-between">
+<div class="space-y-6">
+<div class="space-y-2">
+<span class="font-label-md text-label-md uppercase text-text-muted">Trạng thái hiện tại</span>
+<div>
+<span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 text-amber-700 border border-amber-200 font-title-md text-title-md font-bold">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+                                        Đang xác minh
+                                    </span>
+</div>
+</div>
+<div class="space-y-2">
+<span class="font-label-md text-label-md uppercase text-text-muted">Mức độ nguy cấp</span>
+<div>
+<span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-tint text-primary border border-primary/20 font-title-md text-title-md font-bold">
+<span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">priority_high</span>
+                                        Cao
+                                    </span>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<button class="btn-primary w-full py-4 rounded-lg font-title-lg text-title-lg font-bold flex items-center justify-center gap-3">
+                                Xem chi tiết tiến độ
+                                <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Information Note -->
+<div class="mt-6 flex gap-3 p-4 bg-surface-container-low border border-border-subtle rounded-lg">
+<span class="material-symbols-outlined text-secondary">info</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                    Quá trình xác minh có thể mất từ 3-7 ngày làm việc tùy thuộc vào tính chất phức tạp của vụ việc. Bạn sẽ nhận được thông báo qua số điện thoại/email nếu có yêu cầu bổ sung thông tin.
+                </p>
+</div>
+</div>
+</main>
+<!-- Footer Shell -->
+<footer class="bg-surface-container-highest dark:bg-inverse-surface text-on-surface dark:text-inverse-on-surface w-full py-12 mt-16 border-t border-border-subtle transition-all duration-300">
+<div class="max-w-container-max mx-auto px-margin-desktop flex flex-col md:flex-row justify-between items-start gap-gutter">
+<div class="max-w-md">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-8 w-8 bg-primary rounded-sm flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">gavel</span>
+</div>
+<span class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed">Cổng thông tin tố giác tội phạm</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant mb-6">
+                    Hệ thống trực thuộc Bộ Công an, tiếp nhận mọi thông tin phản ánh về vi phạm pháp luật nhằm bảo vệ an ninh quốc gia và trật tự an toàn xã hội.
+                </p>
+<p class="font-body-sm text-body-sm opacity-80">© 2024 Cổng thông tin tố giác tội phạm - Bộ Công an. Bảo lưu mọi quyền.</p>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div class="space-y-4">
+<h4 class="font-title-md text-title-md font-bold uppercase tracking-wider">Thông tin</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Chính sách bảo mật</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Điều khoản sử dụng</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-title-md text-title-md font-bold uppercase tracking-wider">Hỗ trợ</h4>
+<ul class="flex flex-col gap-2">
+<li><a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Liên hệ công tác</a></li>
+<li><a class="font-body-sm text-body-sm text-on-surface-variant dark:text-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors" href="#">Sơ đồ trang web</a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Simulate showing results after a delay
+        document.querySelector('.btn-primary').addEventListener('click', function(e) {
+            // Only simulate if it's the search button
+            if (this.innerText.includes('Tra cứu')) {
+                const results = document.getElementById('search-result');
+                results.classList.remove('opacity-0', 'translate-y-4');
+                results.classList.add('opacity-100', 'translate-y-0');
+                
+                // Scroll into view smoothly
+                setTimeout(() => {
+                    results.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            }
+        });
+
+        // Trigger visual effect on initial load for the search card
+        window.addEventListener('load', () => {
+            const card = document.querySelector('.bg-surface');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(10px)';
+            
+            requestAnimationFrame(() => {
+                card.style.transition = 'all 0.6s ease-out';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body></html>

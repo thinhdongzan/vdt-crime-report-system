@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+
+<html class="light" lang="vi"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gửi Thành Công | Cổng Thông tin Tố giác Tội phạm</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary-fixed": "#ffdad4",
+                    "page-bg": "#F7F5F0",
+                    "primary": "#610000",
+                    "on-secondary-fixed-variant": "#584400",
+                    "surface-container-low": "#edf4ff",
+                    "on-tertiary-container": "#ff907f",
+                    "surface-variant": "#d9e3f1",
+                    "surface-container-high": "#dfe9f7",
+                    "primary-fixed-dim": "#ffb4a8",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#e8f2ff",
+                    "tertiary-fixed-dim": "#ffb4a8",
+                    "secondary": "#755b00",
+                    "background": "#f7f9ff",
+                    "on-tertiary-fixed": "#410000",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary-container": "#fed255",
+                    "outline": "#8e706b",
+                    "tertiary": "#600201",
+                    "on-error-container": "#93000a",
+                    "on-tertiary": "#ffffff",
+                    "on-surface-variant": "#5a403c",
+                    "secondary-fixed-dim": "#ecc246",
+                    "outline-variant": "#e3beb8",
+                    "on-primary-container": "#ff907f",
+                    "on-secondary-fixed": "#241a00",
+                    "inverse-primary": "#ffb4a8",
+                    "surface-dim": "#d1dbe8",
+                    "on-secondary-container": "#735a00",
+                    "on-error": "#ffffff",
+                    "red-tint": "#F8EAEA",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed-variant": "#920703",
+                    "on-tertiary-fixed-variant": "#862116",
+                    "tertiary-fixed": "#ffdad4",
+                    "text-muted": "#6B7280",
+                    "on-primary-fixed": "#410000",
+                    "surface-container": "#e4effd",
+                    "surface-bright": "#f7f9ff",
+                    "error-container": "#ffdad6",
+                    "on-background": "#121d26",
+                    "border-subtle": "#E5E0D8",
+                    "surface": "#FFFFFF",
+                    "tertiary-container": "#801c12",
+                    "error": "#ba1a1a",
+                    "secondary-fixed": "#ffe08e",
+                    "inverse-surface": "#27313c",
+                    "surface-tint": "#b52619",
+                    "on-surface": "#121d26",
+                    "surface-container-highest": "#d9e3f1",
+                    "primary-container": "#8b0000"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "16px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "container-max": "1280px",
+                    "margin-tablet": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "title-lg": ["Inter"],
+                    "title-md": ["Inter"],
+                    "display-lg": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                    "title-lg": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "title-md": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>body {
+    font-family: "Inter", sans-serif;
+    background-color: #F7F5F0;
+    background-image: url(https://www.transparenttextures.com/patterns/cubes.png);
+    /* Placeholder for Dong Son pattern logic */
+    background-attachment: fixed
+    }
+.dong-son-watermark {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0.05;
+    z-index: 0;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBb1GaG_f87SZCXDsf8TbZ-dFm3xlkSPHTvmmTE5e_muBkgILXFXq22Hl1aW-Ox9NEFhOXiIuDpXIUskQZQo_Y-EO0NjDL0gyxh5DICyUe83fDsKaKaLXiipy-9-3CdC0U6gobXulHI8EdzoRgs4sUE3-hO3GimRrMH3AldVyIw-K2bz9bGocNvm19D-qThVQTsaUuGHR6xmTIJGkZaylUICs-IMAb-7gl54eEuOkLSHYVhHcYjfwxW_Jf6nx2vcQnB3_oMCJQ1mksO);
+    background-repeat: repeat;
+    background-size: 600px
+    }
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.success-card {
+    box-shadow: 0 4px 12px rgba(31, 41, 51, 0.05)
+    }</style>
+</head>
+<body class="flex flex-col min-h-screen relative">
+<!-- Watermark layer -->
+<div class="dong-son-watermark" data-alt="A subtle, repetitive geometric pattern inspired by the ancient Vietnamese Dong Son bronze drum, rendered in a very light tan on an ivory background. The pattern includes concentric circles, stylized birds, and sunburst motifs, creating a traditional yet clean institutional aesthetic for a government website."></div>
+<!-- TopNavBar -->
+<header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-title-md text-title-md w-full top-0 sticky border-b border-on-primary/10 transition-colors duration-200 z-50">
+<div class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-16">
+<div class="font-headline-md text-headline-md font-semibold text-on-primary dark:text-on-primary-container">
+                Hệ thống Tiền tiếp nhận &amp; Điều phối
+            </div>
+<nav class="hidden md:flex items-center gap-gutter h-full">
+<a class="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" href="#">Tổng quan</a>
+<a class="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" href="#">Gửi tin báo</a>
+<a class="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" href="#">Theo dõi tin báo</a>
+<a class="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" href="#">Hồ sơ của tôi</a>
+<a class="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" href="#">Hỗ trợ</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</div>
+<button class="bg-on-primary text-primary px-4 py-1.5 rounded-lg font-medium text-body-sm hover:bg-on-primary/90 transition-colors">
+                    Đăng xuất
+                </button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center py-16 px-margin-mobile relative z-10">
+<div class="max-w-[640px] w-full">
+<!-- Success Card -->
+<div class="success-card bg-surface border border-border-subtle rounded-lg p-8 md:p-12 text-center">
+<!-- Success Icon -->
+<div class="inline-flex items-center justify-center w-20 h-20 bg-red-tint rounded-full mb-6">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<!-- Title & Subtitle -->
+<h2 class="font-headline-lg text-headline-lg text-[#1F2933] mb-3">Tin báo đã được gửi thành công</h2>
+<p class="font-body-md text-body-md text-text-muted max-w-md mx-auto mb-10">Hệ thống đã tiếp nhận thông tin và tạo mã theo dõi cho tin báo của bạn.</p>
+<!-- Tracking Code Section -->
+<div class="bg-page-bg border border-border-subtle rounded-xl p-6 mb-10">
+<span class="font-label-md text-label-md text-text-muted uppercase tracking-wider mb-2 block">Mã theo dõi</span>
+<div class="flex items-center justify-center gap-4">
+<span class="font-display-lg text-display-lg text-primary tracking-tight" id="trackingCode">TB-2026-000128</span>
+<button class="flex items-center justify-center w-10 h-10 rounded-lg border border-border-subtle bg-white hover:bg-page-bg transition-all active:scale-95" onclick="copyCode()" title="Sao chép mã">
+<span class="material-symbols-outlined text-primary">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Summary Table -->
+<div class="border-t border-border-subtle pt-8 mb-10">
+<div class="grid grid-cols-1 gap-4 text-left">
+<div class="flex justify-between items-center py-2 border-b border-dashed border-border-subtle">
+<span class="font-body-sm text-text-muted">Trạng thái</span>
+<span class="px-3 py-1 bg-surface-container text-primary font-medium text-body-sm rounded">Mới tiếp nhận</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-dashed border-border-subtle">
+<span class="font-body-sm text-text-muted">Thời gian gửi</span>
+<span class="font-medium text-body-sm text-on-surface">20/06/2026 14:35</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-dashed border-border-subtle">
+<span class="font-body-sm text-text-muted">Mức độ nguy cấp</span>
+<span class="font-medium text-body-sm text-error flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">priority_high</span> Cao
+                            </span>
+</div>
+<div class="flex justify-between items-center py-2">
+<span class="font-body-sm text-text-muted">Địa bàn</span>
+<span class="font-medium text-body-sm text-on-surface italic">Đang xác định</span>
+</div>
+</div>
+</div>
+<!-- Note -->
+<div class="flex items-start gap-3 bg-red-tint/30 p-4 rounded-lg text-left mb-10 border-l-4 border-primary">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">
+<strong>Lưu ý:</strong> Vui lòng lưu lại mã theo dõi để tra cứu tiến độ xử lý tin báo tại mục "Tra cứu tin báo" hoặc qua ứng dụng VNeID.
+                    </p>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-3">
+<button class="w-full py-4 bg-primary hover:bg-[#5C0000] text-white font-title-md text-title-md rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">track_changes</span>
+                        Theo dõi trạng thái
+                    </button>
+<div class="grid grid-cols-2 gap-3">
+<button class="py-3 border border-primary text-primary hover:bg-red-tint font-title-md text-title-md rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">add_comment</span>
+                            Gửi tin báo khác
+                        </button>
+<button class="py-3 text-text-muted hover:text-primary hover:bg-page-bg font-title-md text-title-md rounded-lg transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">dashboard</span>
+                            Về tổng quan
+                        </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-page-bg dark:bg-on-background text-on-surface-variant dark:text-surface-variant border-t border-border-subtle relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-center w-full py-8 px-margin-desktop max-w-container-max mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="font-title-md text-title-md text-primary font-bold">Bộ Công an Việt Nam</span>
+<p class="font-body-sm text-body-sm text-center md:text-left">© 2024 Bộ Công an - Cổng Thông tin Tố giác Tội phạm. Tất cả quyền được bảo lưu.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 font-body-sm text-body-sm">
+<a class="text-text-muted hover:text-primary underline transition-all duration-200" href="#">Điều khoản sử dụng</a>
+<a class="text-text-muted hover:text-primary underline transition-all duration-200" href="#">Chính sách bảo mật</a>
+<a class="text-text-muted hover:text-primary underline transition-all duration-200" href="#">Hướng dẫn sử dụng</a>
+<a class="text-text-muted hover:text-primary underline transition-all duration-200" href="#">Liên hệ</a>
+</div>
+</div>
+</footer>
+<script>
+        function copyCode() {
+            const code = document.getElementById('trackingCode').innerText;
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = event.currentTarget;
+                const icon = btn.querySelector('.material-symbols-outlined');
+                const originalIcon = icon.innerText;
+                icon.innerText = 'check';
+                btn.classList.add('bg-green-50', 'border-green-200');
+                
+                setTimeout(() => {
+                    icon.innerText = originalIcon;
+                    btn.classList.remove('bg-green-50', 'border-green-200');
+                }, 2000);
+            });
+        }
+
+        // Simple fade-in animation for the card
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.success-card');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+            
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+</body></html>
