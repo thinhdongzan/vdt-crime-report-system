@@ -1,18 +1,75 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showError, setShowError] = useState(true);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+  
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const handleLogin = (e: React.FormEvent) => {
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get('registered') === 'true') {
+      setSuccessMsg('Đăng ký thành công! Vui lòng đăng nhập.');
+    }
+  }, [location]);
+
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    // Mock login delay
-    setTimeout(() => {
+    setErrorMsg('');
+    setSuccessMsg('');
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || 'Thông tin đăng nhập không chính xác');
+      }
+
+      // Success
+      const { accessToken, role } = data.data;
+      localStorage.setItem('accessToken', accessToken);
+      localStorage.setItem('userRole', role);
+
+      // Redirect based on role
+      switch (role) {
+        case 'CITIZEN':
+          navigate('/citizen');
+          break;
+        case 'DUTY_OFFICER':
+          navigate('/officer/reports');
+          break;
+        case 'INVESTIGATOR':
+          navigate('/investigator/cases');
+          break;
+        case 'COMMANDER':
+          navigate('/commander/dashboard');
+          break;
+        case 'ADMIN':
+          navigate('/admin');
+          break;
+        default:
+          navigate('/');
+      }
+
+    } catch (err: any) {
+      setErrorMsg(err.message || 'Đã có lỗi xảy ra. Vui lòng thử lại.');
+    } finally {
       setIsLoading(false);
-      setShowError(true);
-    }, 1500);
+    }
   };
 
   return (
@@ -62,12 +119,22 @@ export default function LoginPage() {
             </p>
           </div>
 
+          {/* Success State Alert */}
+          {successMsg && (
+            <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-500 flex gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
+              <span className="material-symbols-outlined text-green-600" style={{ fontVariationSettings: "'FILL' 1" }}>check_circle</span>
+              <p className="font-body-sm text-body-sm text-green-800">
+                {successMsg}
+              </p>
+            </div>
+          )}
+
           {/* Error State Alert */}
-          {showError && (
+          {errorMsg && (
             <div className="mb-6 p-4 bg-red-tint border-l-4 border-error flex gap-3 animate-in fade-in slide-in-from-top-2 duration-300">
               <span className="material-symbols-outlined text-error" style={{ fontVariationSettings: "'FILL' 1" }}>error</span>
               <p className="font-body-sm text-body-sm text-on-error-container">
-                Thông tin đăng nhập không chính xác. Vui lòng kiểm tra lại email/số điện thoại và mật khẩu.
+                {errorMsg}
               </p>
             </div>
           )}
@@ -83,10 +150,14 @@ export default function LoginPage() {
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-muted text-[20px]">person</span>
                 <input 
-                  className="w-full pl-10 pr-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none" 
+                  className="w-full pl-10 pr-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
                   id="identifier" 
                   placeholder="Nhập email hoặc SĐT..." 
                   type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  disabled={isLoading}
+                  required
                 />
               </div>
             </div>
@@ -102,10 +173,14 @@ export default function LoginPage() {
               <div className="relative">
                 <span className="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-text-muted text-[20px]">lock</span>
                 <input 
-                  className="w-full pl-10 pr-12 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none" 
+                  className="w-full pl-10 pr-12 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
                   id="password" 
                   placeholder="••••••••" 
                   type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading}
+                  required
                 />
                 <button className="absolute right-3 top-1/2 -translate-y-1/2 text-text-muted hover:text-on-background" type="button">
                   <span className="material-symbols-outlined text-[20px]">visibility_off</span>
@@ -115,7 +190,7 @@ export default function LoginPage() {
 
             {/* Remember Me */}
             <div className="flex items-center gap-2">
-              <input className="w-4 h-4 rounded border-border-subtle text-primary focus:ring-primary" id="remember" type="checkbox" />
+              <input className="w-4 h-4 rounded border-border-subtle text-primary focus:ring-primary" id="remember" type="checkbox" disabled={isLoading} />
               <label className="font-body-sm text-body-sm text-on-surface-variant" htmlFor="remember">Duy trì đăng nhập trên thiết bị này</label>
             </div>
 
@@ -135,8 +210,9 @@ export default function LoginPage() {
               )}
             </button>
             
-            <div className="text-center mt-2">
-               <Link to="/" className="font-body-sm text-body-sm text-primary hover:underline">Quay lại trang chủ</Link>
+            <div className="text-center mt-2 flex flex-col gap-2">
+               <span className="font-body-sm text-body-sm text-text-muted">Chưa có tài khoản? <Link to="/register" className="text-primary hover:underline font-medium">Đăng ký ngay</Link></span>
+               <Link to="/" className="font-body-sm text-body-sm text-text-muted hover:text-primary hover:underline transition-colors mt-2">Quay lại trang chủ</Link>
             </div>
             
           </form>

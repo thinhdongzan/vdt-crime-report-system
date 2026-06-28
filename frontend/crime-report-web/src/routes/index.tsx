@@ -15,15 +15,16 @@ export const router = createBrowserRouter([
         element: <MainLayout />,
         children: [
             { index: true, element: <LandingPage /> },
-            { path: "login", element: <LoginPage /> },
-            { path: "register", element: <RegisterPage /> },
             { path: "commander/dashboard", element: <CommanderDashboardPage /> },
         ]
     },
+    { path: "/login", element: <LoginPage /> },
+    { path: "/register", element: <RegisterPage /> },
     {
         path: "/citizen",
         element: <CitizenLayout />,
         children: [
+            { index: true, element: <CitizenDashboardPage /> },
             { path: "dashboard", element: <CitizenDashboardPage /> },
             { path: "reports/submit", element: <CitizenSubmitReportPage /> },
             { path: "reports/track", element: <CitizenTrackReportPage /> },

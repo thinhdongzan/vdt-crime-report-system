@@ -11,7 +11,7 @@ export default function CitizenLayout() {
   };
 
   return (
-    <div className="bg-page-bg font-body-md text-on-surface min-h-screen flex flex-col dong-son-watermark">
+    <div className="bg-page-bg/0 font-body-md text-on-surface min-h-screen flex flex-col">
       {/* TopNavBar */}
       <header className="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-title-md text-title-md w-full top-0 sticky border-b border-on-primary/10 transition-colors duration-200 z-50">
         <div className="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-16">
