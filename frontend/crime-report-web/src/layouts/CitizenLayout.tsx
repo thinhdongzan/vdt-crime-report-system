@@ -3,11 +3,11 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 export default function CitizenLayout() {
   const location = useLocation();
 
-  const getSubNavClass = (path: string) => {
+  const getNavClass = (path: string) => {
     const isActive = location.pathname === path;
     return isActive
-      ? "text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md transition-all"
-      : "text-on-surface-variant font-medium hover:text-primary transition-all font-label-md text-label-md";
+      ? "text-on-primary font-bold bg-on-primary/10 rounded px-3 py-1.5 transition-colors duration-200"
+      : "text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 rounded px-3 py-1.5 transition-colors duration-200";
   };
 
   return (
@@ -18,11 +18,12 @@ export default function CitizenLayout() {
           <div className="font-headline-md text-headline-md font-semibold text-on-primary dark:text-on-primary-container">
             <Link to="/citizen/dashboard">Hệ thống Tiếp nhận & Điều phối</Link>
           </div>
-          <nav className="hidden md:flex items-center gap-gutter h-full">
-            <Link className="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" to="/">Trang chủ</Link>
-            <Link className="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" to="/citizen/reports/submit">Gửi tin báo</Link>
-            <Link className="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" to="/citizen/reports/track">Theo dõi tin báo</Link>
-            <Link className="text-on-primary/80 font-medium hover:text-on-primary hover:bg-on-primary/5 transition-colors duration-200 px-2 py-1" to="#">Hướng dẫn</Link>
+          <nav className="hidden lg:flex items-center gap-2 h-full">
+            <Link className={getNavClass("/citizen/dashboard")} to="/citizen/dashboard">Tổng quan</Link>
+            <Link className={getNavClass("/citizen/reports/submit")} to="/citizen/reports/submit">Gửi tin báo</Link>
+            <Link className={getNavClass("/citizen/reports/track")} to="/citizen/reports/track">Theo dõi tin báo</Link>
+            <Link className={getNavClass("/citizen/profile")} to="/citizen/profile">Hồ sơ của tôi</Link>
+            <Link className={getNavClass("/citizen/support")} to="/citizen/support">Hỗ trợ</Link>
           </nav>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -36,14 +37,6 @@ export default function CitizenLayout() {
         </div>
       </header>
 
-      {/* SideNavBar (Secondary Horizontal Navigation) */}
-      <nav className="flex items-center justify-start gap-gutter px-margin-desktop w-full bg-surface border-b border-border-subtle h-12 sticky top-16 z-40 overflow-x-auto">
-        <Link className={getSubNavClass("/citizen/dashboard")} to="/citizen/dashboard">Tổng quan</Link>
-        <Link className={getSubNavClass("/citizen/reports/submit")} to="/citizen/reports/submit">Gửi tin báo</Link>
-        <Link className={getSubNavClass("/citizen/reports/track")} to="/citizen/reports/track">Theo dõi tin báo</Link>
-        <Link className={getSubNavClass("/citizen/profile")} to="#">Hồ sơ của tôi</Link>
-        <Link className={getSubNavClass("/citizen/support")} to="#">Hỗ trợ</Link>
-      </nav>
 
       {/* Main Content */}
       <main className="flex-grow w-full">

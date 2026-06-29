@@ -153,6 +153,8 @@ services:
       - "5173:5173"
     networks:
       - crime-report-network
+    depends_on:
+      - api-gateway
 
 networks:
   crime-report-network:

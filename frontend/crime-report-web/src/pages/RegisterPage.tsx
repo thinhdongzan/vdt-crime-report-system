@@ -56,15 +56,20 @@ export default function RegisterPage() {
 
   return (
     <main className="w-full min-h-screen flex flex-col md:flex-row bg-page-bg">
-      {/* Left Column: Branding & Messaging */}
-      <section className="relative w-full md:w-5/12 lg:w-1/2 bg-primary flex items-center justify-center p-8 md:p-16 overflow-hidden">
+      <section className="relative w-full md:w-5/12 lg:w-1/2 bg-primary flex items-center justify-center p-6 md:p-12 overflow-hidden">
+        {/* Back Button */}
+        <Link to="/" className="absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-2 text-white/80 hover:text-white transition-colors z-20">
+          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span className="font-body-sm font-medium">Trang chủ</span>
+        </Link>
+
         {/* Dong Son Watermark Overlay */}
         <div 
           className="absolute inset-0 z-0 dong-son-watermark" 
           style={{ backgroundImage: "url('https://lh3.googleusercontent.com/aida-public/AB6AXuD74zBdtguIgHMHf8WeTbGnFla_EfWV1MRMGFw-Egd1RtztI12LItKob_B8aInPayDSig-X6nGf5kBaqwxCsxI7GaB28J4wkLz3V5AmdLKcUDrMX3I6-RpB1gYAdhqbm0HFN5DobkwqzL7JSh1TIpox0XdkjyMZrwdt_8TOGUWVpyyqdZyNVzQo-u5KEydvgWR_bacP-pHQdFu_gTJxQsUrKMDz_hHqyoyjxGuzCLchUtGyYUMqalleiSRfFd3Js9OMyriy_8V8BxNW')" }}
         ></div>
         
-        <div className="relative z-10 max-w-lg text-center md:text-left flex flex-col gap-6">
+        <div className="relative z-10 max-w-lg text-center md:text-left flex flex-col gap-4">
           <div className="flex items-center gap-4 mb-4 justify-center md:justify-start">
             <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg">
               <span className="material-symbols-outlined text-[48px] text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>shield</span>
@@ -88,11 +93,11 @@ export default function RegisterPage() {
       </section>
 
       {/* Right Column: Register Form */}
-      <section className="w-full md:w-7/12 lg:w-1/2 bg-page-bg flex items-center justify-center p-6 md:p-12 lg:p-24 overflow-y-auto">
-        <div className="w-full max-w-md bg-surface border border-border-subtle p-8 lg:p-10 rounded-lg shadow-sm">
+      <section className="w-full md:w-7/12 lg:w-1/2 bg-page-bg flex items-center justify-center p-4 md:p-8 relative">
+        <div className="w-full max-w-lg bg-surface border border-border-subtle p-6 lg:p-8 rounded-lg shadow-sm z-10 mt-10 md:mt-0">
           
           {/* Form Header */}
-          <div className="mb-8">
+          <div className="mb-5">
             <h2 className="font-headline-md text-headline-md text-on-background mb-2">
               Đăng ký tài khoản
             </h2>
@@ -115,12 +120,12 @@ export default function RegisterPage() {
           <form className="flex flex-col gap-4" onSubmit={handleRegister}>
             
             {/* Full Name */}
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1.5">
               <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="fullName">
                 Họ và tên *
               </label>
               <input 
-                className="w-full px-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
+                className="w-full px-3 py-2.5 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
                 id="fullName" 
                 placeholder="Nguyễn Văn A" 
                 type="text"
@@ -131,72 +136,76 @@ export default function RegisterPage() {
               />
             </div>
 
-            {/* Email */}
-            <div className="flex flex-col gap-1">
-              <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="email">
-                Email
-              </label>
-              <input 
-                className="w-full px-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
-                id="email" 
-                placeholder="nguyenvana@example.com" 
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                disabled={isLoading}
-              />
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Email */}
+              <div className="flex flex-col gap-1.5 flex-1">
+                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="email">
+                  Email
+                </label>
+                <input 
+                  className="w-full px-3 py-2.5 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
+                  id="email" 
+                  placeholder="nguyenvana@example.com" 
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
+
+              {/* Phone */}
+              <div className="flex flex-col gap-1.5 flex-1">
+                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="phone">
+                  Số điện thoại
+                </label>
+                <input 
+                  className="w-full px-3 py-2.5 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
+                  id="phone" 
+                  placeholder="0912345678" 
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  disabled={isLoading}
+                />
+              </div>
             </div>
 
-            {/* Phone */}
-            <div className="flex flex-col gap-1">
-              <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="phone">
-                Số điện thoại
-              </label>
-              <input 
-                className="w-full px-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
-                id="phone" 
-                placeholder="0912345678" 
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                disabled={isLoading}
-              />
-            </div>
-
-            {/* Password */}
-            <div className="flex flex-col gap-1">
-              <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="password">
-                Mật khẩu *
-              </label>
-              <input 
-                className="w-full px-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
-                id="password" 
-                placeholder="••••••••" 
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                disabled={isLoading}
-                required
-                minLength={6}
-              />
-            </div>
-            
-            {/* Confirm Password */}
-            <div className="flex flex-col gap-1">
-              <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="confirmPassword">
-                Nhập lại mật khẩu *
-              </label>
-              <input 
-                className="w-full px-4 py-3 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
-                id="confirmPassword" 
-                placeholder="••••••••" 
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                disabled={isLoading}
-                required
-                minLength={6}
-              />
+            <div className="flex flex-col md:flex-row gap-4">
+              {/* Password */}
+              <div className="flex flex-col gap-1.5 flex-1">
+                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="password">
+                  Mật khẩu *
+                </label>
+                <input 
+                  className="w-full px-3 py-2.5 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
+                  id="password" 
+                  placeholder="••••••••" 
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  disabled={isLoading}
+                  required
+                  minLength={6}
+                />
+              </div>
+              
+              {/* Confirm Password */}
+              <div className="flex flex-col gap-1.5 flex-1">
+                <label className="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider" htmlFor="confirmPassword">
+                  Nhập lại mật khẩu *
+                </label>
+                <input 
+                  className="w-full px-3 py-2.5 bg-white border border-border-subtle rounded text-body-md focus:ring-1 focus:ring-primary focus:border-primary transition-all outline-none disabled:bg-gray-100" 
+                  id="confirmPassword" 
+                  placeholder="••••••••" 
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  disabled={isLoading}
+                  required
+                  minLength={6}
+                />
+              </div>
             </div>
 
             {/* Terms Agreement */}
@@ -209,7 +218,7 @@ export default function RegisterPage() {
 
             {/* Primary Action */}
             <button 
-              className="mt-4 w-full bg-primary hover:bg-[#5C0000] text-on-primary font-title-md text-title-md py-4 rounded shadow-sm flex items-center justify-center gap-3 active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed group relative overflow-hidden" 
+              className="mt-2 w-full bg-primary hover:bg-[#5C0000] text-on-primary font-title-md text-title-md py-3 rounded shadow-sm flex items-center justify-center gap-2 active:scale-[0.98] transition-all disabled:opacity-70 disabled:cursor-not-allowed group relative overflow-hidden" 
               type="submit"
               disabled={isLoading}
             >

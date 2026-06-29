@@ -74,8 +74,13 @@ export default function LoginPage() {
 
   return (
     <main className="w-full min-h-screen flex flex-col md:flex-row bg-page-bg">
-      {/* Left Column: Branding & Messaging */}
       <section className="relative w-full md:w-5/12 lg:w-1/2 bg-primary flex items-center justify-center p-8 md:p-16 overflow-hidden">
+        {/* Back Button */}
+        <Link to="/" className="absolute top-4 left-4 md:top-8 md:left-8 flex items-center gap-2 text-white/80 hover:text-white transition-colors z-20">
+          <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+          <span className="font-body-sm font-medium">Trang chủ</span>
+        </Link>
+
         {/* Dong Son Watermark Overlay */}
         <div 
           className="absolute inset-0 z-0 dong-son-watermark" 
@@ -106,8 +111,8 @@ export default function LoginPage() {
       </section>
 
       {/* Right Column: Login Form */}
-      <section className="w-full md:w-7/12 lg:w-1/2 bg-page-bg flex items-center justify-center p-6 md:p-12 lg:p-24">
-        <div className="w-full max-w-md bg-surface border border-border-subtle p-8 lg:p-10 rounded-lg shadow-sm">
+      <section className="w-full md:w-7/12 lg:w-1/2 bg-page-bg flex items-center justify-center p-6 md:p-12 lg:p-24 relative">
+        <div className="w-full max-w-md bg-surface border border-border-subtle p-8 lg:p-10 rounded-lg shadow-sm z-10">
           
           {/* Form Header */}
           <div className="mb-8">
@@ -212,7 +217,6 @@ export default function LoginPage() {
             
             <div className="text-center mt-2 flex flex-col gap-2">
                <span className="font-body-sm text-body-sm text-text-muted">Chưa có tài khoản? <Link to="/register" className="text-primary hover:underline font-medium">Đăng ký ngay</Link></span>
-               <Link to="/" className="font-body-sm text-body-sm text-text-muted hover:text-primary hover:underline transition-colors mt-2">Quay lại trang chủ</Link>
             </div>
             
           </form>
